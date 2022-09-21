@@ -70,6 +70,8 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon"
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
+        "ecs": "vendor/bin/ecs check src ecs.php",
+        "ecs-fix": "vendor/bin/ecs check src ecs.php --fix"
     }
 }
