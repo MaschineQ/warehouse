@@ -14,6 +14,18 @@
         {% endblock %}
     </head>
     <body>
+    {% for message in app.flashes('success') %}
+        <div class="rounded-md p-2 border-green-300 bg-green-50 border dark:bordere-green-600 dark:bg-green-700 dark:text-white mb-4">{{ message }}</div>
+    {% endfor %}
+
+    Home
+    {% block bread %}
+
+    {% endblock %}
+
+
         {% block body %}{% endblock %}
     </body>
+
+
 </html>
