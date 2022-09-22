@@ -9,7 +9,7 @@
 {% block body %}
 {% for product in products %}
     <div>
-        <a href="{{ path('app_product_edit', { product: product.id }) }}">{{ product.name }} - {{ product.quantity }}</a>
+        <a href="{{ path('app_product_edit', { product: product.id }) }}">{{ product.name }} - {{ product.quantity }} - {{ product.category.name }}</a>
     </div>
 {% endfor %}
 {% endblock %}

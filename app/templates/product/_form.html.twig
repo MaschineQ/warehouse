@@ -13,5 +13,11 @@
     {{ form_errors(form.quantity) }}
 </div>
 
+<div>
+    {{ form_label(form.category, 'Please select category') }}
+    {{ form_widget(form.category) }}
+    {{ form_errors(form.category) }}
+</div>
+
 <button type="submit" class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:gb-indigo-500 dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2">Save</button>
 {{ form_end(form)}}
