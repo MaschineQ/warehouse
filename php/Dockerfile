@@ -9,7 +9,7 @@ RUN apt update && apt install -y wget zlib1g-dev g++ git libicu-dev zip libzip-d
     && docker-php-ext-install zip
 
 WORKDIR /var/www
-RUN sudo chown -R $USER /var/www/
+RUN chmod -R 777 /var/www
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
