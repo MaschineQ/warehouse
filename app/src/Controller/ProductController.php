@@ -6,7 +6,6 @@ use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,7 +23,7 @@ class ProductController extends AbstractController
     #[Route('/product/add', name: 'app_product_add', priority: 2)]
     public function add(Request $request, ProductRepository $products): Response
     {
-        $form =$this->createForm(ProductType::class, new Product());
+        $form = $this->createForm(ProductType::class, new Product());
 
         $form->handleRequest($request);
 
