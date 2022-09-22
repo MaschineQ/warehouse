@@ -59,7 +59,7 @@ class ProductController extends AbstractController
         }
 
         return $this->render(
-            'product/_form.html.twig',
+            'product/edit.html.twig',
             [
                 'form' => $form->createView(),
                 'product' => $product
