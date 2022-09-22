@@ -49,6 +49,7 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Product $product */
             $product = $form->getData();
             $products->add($product, true);
 
