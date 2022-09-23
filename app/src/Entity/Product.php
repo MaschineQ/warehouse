@@ -23,6 +23,12 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private Category $category;
 
+    #[ORM\Column]
+    private int $packaging;
+
+    #[ORM\Column]
+    private int $label;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +66,30 @@ class Product
     public function setCategory(Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getPackaging(): int
+    {
+        return $this->packaging;
+    }
+
+    public function setPackaging(int $packaging): self
+    {
+        $this->packaging = $packaging;
+
+        return $this;
+    }
+
+    public function getLabel(): int
+    {
+        return $this->label;
+    }
+
+    public function setLabel(int $label): self
+    {
+        $this->label = $label;
 
         return $this;
     }

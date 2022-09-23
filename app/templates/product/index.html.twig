@@ -26,6 +26,8 @@
                     <tr>
                         <th class="text-left text-blue-900">Name</th>
                         <th class="text-left text-blue-900">Quantity</th>
+                        <th class="text-left text-blue-900">Packaging</th>
+                        <th class="text-left text-blue-900">Label</th>
                         <th class="text-left text-blue-900">Category</th>
                     </tr>
                     </thead>
@@ -35,6 +37,8 @@
                     <tr>
                         <td><a href="{{ path('app_product_edit', { product: product.id }) }}">{{ product.name }}</a></td>
                         <td>{{ product.quantity }}</td>
+                        <td>{{ product.packaging }}</td>
+                        <td>{{ product.label }}</td>
                         <td>{{ product.category.name }}</td>
                     </tr>
                     {% endfor %}

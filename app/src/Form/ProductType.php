@@ -16,6 +16,8 @@ class ProductType extends AbstractType
         $builder
             ->add('name')
             ->add('quantity')
+            ->add('packaging')
+            ->add('label')
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'placeholder' => 'Choose a category',
