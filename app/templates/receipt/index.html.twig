@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block bread %}
+    → Products
+{% endblock %}
+
+{% block body %}
+    <div class="bg-white border rounded shadow mb-2">
+        <div class="p-3">
+            <a href="{{ path('app_product_add') }}">
+            <i class="fas fa-plus fa-fw mr-3 text-green-600"></i><span class="pb-1 md:pb-0 text-sm">Add Product</span>
+            </a>
+        </div>
+    </div>
+    <div class="w-full">
+        <!--Table Card-->
+        <div class="bg-white border rounded shadow">
+            <div class="border-b p-3">
+                <h5 class="font-bold uppercase text-gray-600">Products</h5>
+            </div>
+            <div class="p-5">
+                <table class="w-full p-5 text-gray-700">
+                    <thead>
+                    <tr>
+                        <th class="text-left text-blue-900">Date</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for receipt in receipts %}
+                    <tr>
+                        <td><a href="#">{{ receipt.receiptDate | date('Y') }}</a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <!--/table Card-->
+    </div>
+{% endblock %}
