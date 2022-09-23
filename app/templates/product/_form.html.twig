@@ -2,20 +2,20 @@
 <div>{{ form_errors(form) }}</div>
 
 <div>
-    {{ form_label(form.name, 'Please enter the name') }}
-    {{ form_widget(form.name) }}
+    {{ form_label(form.name, 'Please enter the name', {'label_attr': {'class': 'block text-sm text-gray-700 font-medium'}}) }}
+    {{ form_widget(form.name, {'attr': {'class': 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}}) }}
     {{ form_errors(form.name) }}
 </div>
 
 <div>
-    {{ form_label(form.quantity, 'Please enter quantity') }}
-    {{ form_widget(form.quantity) }}
+    {{ form_label(form.quantity, 'Please enter quantity', {'label_attr': {'class': 'block text-sm text-gray-700 font-medium'}}) }}
+    {{ form_widget(form.quantity, {'attr': {'class': 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}}) }}
     {{ form_errors(form.quantity) }}
 </div>
 
 <div>
-    {{ form_label(form.category, 'Please select category') }}
-    {{ form_widget(form.category) }}
+    {{ form_label(form.category, 'Please select category', {'label_attr': {'class': 'block text-sm text-gray-700 font-medium'}}) }}
+    {{ form_widget(form.category, {'attr': {'class': 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}}) }}
     {{ form_errors(form.category) }}
 </div>
 

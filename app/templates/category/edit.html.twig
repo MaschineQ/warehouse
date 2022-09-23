@@ -3,9 +3,21 @@
 {% block title %}Edit Category{% endblock %}
 
 {% block bread %}
+    → <a href="{{ path('app_category') }}">Category</a>
     → Edit Category
 {% endblock %}
 
 {% block body %}
-    {{ include('category/_form.html.twig') }}
+    <div class="w-full">
+        <!--Graph Card-->
+        <div class="bg-white border rounded shadow">
+            <div class="border-b p-3">
+                <h5 class="font-bold uppercase text-gray-600">Category Edit</h5>
+            </div>
+            <div class="p-5">
+                {{ include('category/_form.html.twig') }}
+            </div>
+        </div>
+        <!--/Graph Card-->
+    </div>
 {% endblock %}

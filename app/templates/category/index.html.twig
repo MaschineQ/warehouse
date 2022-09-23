@@ -3,13 +3,35 @@
 {% block title %}Product{% endblock %}
 
 {% block bread %}
-    → Product
+    → Category
 {% endblock %}
 
 {% block body %}
-    {% for category in categories %}
-        <div>
-            <a href="{{ path('app_category_edit', { category: category.id }) }}">{{ category.name }}</a>
+    <div class="w-full">
+        <!--Table Card-->
+        <div class="bg-white border rounded shadow">
+            <div class="border-b p-3">
+                <h5 class="font-bold uppercase text-gray-600">Category</h5>
+            </div>
+            <div class="p-5">
+                <table class="w-full p-5 text-gray-700">
+                    <thead>
+                    <tr>
+                        <th class="text-left text-blue-900">Name</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td><a href="{{ path('app_category_edit', { category: category.id }) }}">{{ category.name }}</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
         </div>
-    {% endfor %}
+        <!--/table Card-->
+    </div>
 {% endblock %}
