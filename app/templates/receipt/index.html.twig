@@ -21,6 +21,7 @@
                 <h5 class="font-bold uppercase text-gray-600">Receipts</h5>
             </div>
             <div class="p-5">
+                {% if receipts|length > 0 %}
                 <table class="w-full p-5 text-gray-700">
                     <thead>
                     <tr>
@@ -42,7 +43,11 @@
                     {% endfor %}
                     </tbody>
                 </table>
-
+                {% else %}
+                    <div class="text-center">
+                        No receipts.
+                    </div>
+                {% endif %}
             </div>
         </div>
         <!--/table Card-->

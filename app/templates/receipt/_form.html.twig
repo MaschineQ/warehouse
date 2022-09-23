@@ -4,9 +4,6 @@
 <div>
     {{ form_label(form.receiptDate, 'Please enter the date', {'label_attr': {'class': 'block text-sm text-gray-700 font-medium'}}) }}
     {{ form_widget(form.receiptDate, {'attr': {'class': 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}}) }}
-    <button class="datepicker-toggle-button" data-mdb-toggle="datepicker">
-        <i class="fas fa-calendar datepicker-toggle-icon"></i>
-    </button>
     {{ form_errors(form.receiptDate) }}
 </div>
 
