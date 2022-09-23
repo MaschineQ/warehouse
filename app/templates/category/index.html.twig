@@ -7,6 +7,13 @@
 {% endblock %}
 
 {% block body %}
+    <div class="bg-white border rounded shadow mb-2">
+        <div class="p-3">
+            <a href="{{ path('app_category_add') }}">
+                <i class="fas fa-plus fa-fw mr-3 text-green-600"></i><span class="pb-1 md:pb-0 text-sm">Add Category</span>
+            </a>
+        </div>
+    </div>
     <div class="w-full">
         <!--Table Card-->
         <div class="bg-white border rounded shadow">

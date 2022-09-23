@@ -1,11 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create new Product{% endblock %}
+{% block title %}Edit Product{% endblock %}
 
 {% block bread %}
+    → <a href="{{ path('app_product') }}">Product</a>
     → Add Product
 {% endblock %}
 
 {% block body %}
-{{ include('product/_form.html.twig') }}
+    <div class="w-full">
+        <!--Graph Card-->
+        <div class="bg-white border rounded shadow">
+            <div class="border-b p-3">
+                <h5 class="font-bold uppercase text-gray-600">Product Add</h5>
+            </div>
+            <div class="p-5">
+                {{ include('product/_form.html.twig') }}
+            </div>
+        </div>
+        <!--/Graph Card-->
+    </div>
 {% endblock %}
