@@ -2,11 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Product;
 use App\Entity\Receipt;
-use App\Form\ProductType;
 use App\Form\ReceiptType;
-use App\Repository\ProductRepository;
 use App\Repository\ReceiptRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
