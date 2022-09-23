@@ -1,0 +1,32 @@
+{{ form_start(form) }}
+<div>{{ form_errors(form) }}</div>
+
+<div>
+    {{ form_label(form.receiptDate, 'Please enter the date', {'label_attr': {'class': 'block text-sm text-gray-700 font-medium'}}) }}
+    {{ form_widget(form.receiptDate, {'attr': {'class': 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}}) }}
+    <button class="datepicker-toggle-button" data-mdb-toggle="datepicker">
+        <i class="fas fa-calendar datepicker-toggle-icon"></i>
+    </button>
+    {{ form_errors(form.receiptDate) }}
+</div>
+
+<div>
+    {{ form_label(form.packaging, 'Please enter the packaking', {'label_attr': {'class': 'block text-sm text-gray-700 font-medium'}}) }}
+    {{ form_widget(form.packaging, {'attr': {'class': 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}}) }}
+    {{ form_errors(form.packaging) }}
+</div>
+
+<div>
+    {{ form_label(form.label, 'Please select label', {'label_attr': {'class': 'block text-sm text-gray-700 font-medium'}}) }}
+    {{ form_widget(form.label, {'attr': {'class': 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}}) }}
+    {{ form_errors(form.label) }}
+</div>
+
+<div>
+    {{ form_label(form.product, 'Please select product', {'label_attr': {'class': 'block text-sm text-gray-700 font-medium'}}) }}
+    {{ form_widget(form.product, {'attr': {'class': 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}}) }}
+    {{ form_errors(form.product) }}
+</div>
+
+<button type="submit" class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:gb-indigo-500 dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2">Save</button>
+{{ form_end(form)}}

@@ -9,8 +9,8 @@
 {% block body %}
     <div class="bg-white border rounded shadow mb-2">
         <div class="p-3">
-            <a href="{{ path('app_product_add') }}">
-            <i class="fas fa-plus fa-fw mr-3 text-green-600"></i><span class="pb-1 md:pb-0 text-sm">Add Product</span>
+            <a href="{{ path('app_receipt_add') }}">
+            <i class="fas fa-plus fa-fw mr-3 text-green-600"></i><span class="pb-1 md:pb-0 text-sm">Add Receipts</span>
             </a>
         </div>
     </div>
@@ -18,13 +18,16 @@
         <!--Table Card-->
         <div class="bg-white border rounded shadow">
             <div class="border-b p-3">
-                <h5 class="font-bold uppercase text-gray-600">Products</h5>
+                <h5 class="font-bold uppercase text-gray-600">Receipts</h5>
             </div>
             <div class="p-5">
                 <table class="w-full p-5 text-gray-700">
                     <thead>
                     <tr>
                         <th class="text-left text-blue-900">Date</th>
+                        <th class="text-left text-blue-900">Product</th>
+                        <th class="text-left text-blue-900">Packaging</th>
+                        <th class="text-left text-blue-900">Label</th>
                     </tr>
                     </thead>
 
@@ -32,6 +35,9 @@
                     {% for receipt in receipts %}
                     <tr>
                         <td><a href="#">{{ receipt.receiptDate | date('Y') }}</a></td>
+                        <td><a href="#">{{ receipt.product.name }}</a></td>
+                        <td><a href="#">{{ receipt.packaging }}</a></td>
+                        <td><a href="#">{{ receipt.label }}</a></td>
                     </tr>
                     {% endfor %}
                     </tbody>

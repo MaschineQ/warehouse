@@ -26,6 +26,15 @@ class Receipt
     #[ORM\Column]
     private \DateTimeImmutable $createdAt;
 
+    #[ORM\ManyToOne(inversedBy: 'receipt')]
+    private Product $product;
+
+    public function __construct()
+    {
+        $this->receiptDate = new \DateTime();
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
     public function getId(): int
     {
         return $this->id;
@@ -72,9 +81,14 @@ class Receipt
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function getProduct(): Product
     {
-        $this->createdAt = $createdAt;
+        return $this->product;
+    }
+
+    public function setProduct(Product $product): self
+    {
+        $this->product = $product;
 
         return $this;
     }

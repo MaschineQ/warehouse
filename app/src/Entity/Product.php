@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -28,6 +30,14 @@ class Product
 
     #[ORM\Column]
     private int $label;
+
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Receipt::class)]
+    private Collection $receipt;
+
+    public function __construct()
+    {
+        $this->receipt = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +100,36 @@ class Product
     public function setLabel(int $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Receipt>
+     */
+    public function getReceipt(): Collection
+    {
+        return $this->receipt;
+    }
+
+    public function addReceipt(Receipt $receipt): self
+    {
+        if (!$this->receipt->contains($receipt)) {
+            $this->receipt->add($receipt);
+            $receipt->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReceipt(Receipt $receipt): self
+    {
+        if ($this->receipt->removeElement($receipt)) {
+            // set the owning side to null (unless already changed)
+            if ($receipt->getProduct() === $this) {
+                $receipt->setProduct(null);
+            }
+        }
 
         return $this;
     }
