@@ -112,12 +112,11 @@
 
             <div class="flex flex-wrap">
                 <div class="w-full">
+                    {{ dump(app.flashes()) }}
                     {% for message in app.flashes('success') %}
                         <div class="rounded-md p-2 border-green-300 bg-green-50 border dark:bordere-green-600 dark:bg-green-700 dark:text-white mb-4">{{ message }}</div>
                     {% endfor %}
-
                     <div class="w-full mb-2">
-                        <!--Table Card-->
                         <div class="bg-white border rounded shadow">
                             <div class="p-2 text-xs">
                                 <a href="{{ path('app_dashboard') }}">Home</a>
@@ -127,7 +126,6 @@
 
                             </div>
                         </div>
-                        <!--/table Card-->
                     </div>
                     {% block body %}{% endblock %}
                 </div>

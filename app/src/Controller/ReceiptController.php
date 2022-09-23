@@ -31,6 +31,13 @@ class ReceiptController extends AbstractController
             /** @var Receipt $receipt */
             $receipt = $form->getData();
 
+            $product = $receipt->getProduct();
+            if ($product) {
+            //if (($product->getPackaging() - $receipt->getPackaging() <= 0)) {
+                $this->addFlash('succecs', 'Receipt have been added.');
+                return $this->redirectToRoute('app_receipt');
+            }
+
             $receipts->add($receipt, true);
             $this->addFlash('succecs', 'Receipt have been added.');
             return $this->redirectToRoute('app_receipt');
