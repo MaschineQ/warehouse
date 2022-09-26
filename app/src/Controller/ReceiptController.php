@@ -24,19 +24,22 @@ class ReceiptController extends AbstractController
     public function add(Request $request, ReceiptRepository $receipts): Response
     {
         $form = $this->createForm(ReceiptType::class, new Receipt());
+        /** @var Receipt $receipt */
+        $receipt = $form->getData();
 
         $form->handleRequest($request);
+
+        $alert = false;
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Receipt $receipt */
             $receipt = $form->getData();
 
             $product = $receipt->getProduct();
-            if ($product) {
-            //if (($product->getPackaging() - $receipt->getPackaging() <= 0)) {
-                $this->addFlash('succecs', 'Receipt have been added.');
-                return $this->redirectToRoute('app_receipt');
-            }
+
+            $product->setPackaging($product->getPackaging() + $receipt->getPackaging());
+            $product->setLabel($product->getLabel() + $receipt->getLabel());
+
 
             $receipts->add($receipt, true);
             $this->addFlash('succecs', 'Receipt have been added.');

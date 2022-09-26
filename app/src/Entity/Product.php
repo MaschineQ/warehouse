@@ -111,26 +111,4 @@ class Product
     {
         return $this->receipt;
     }
-
-    public function addReceipt(Receipt $receipt): self
-    {
-        if (!$this->receipt->contains($receipt)) {
-            $this->receipt->add($receipt);
-            $receipt->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReceipt(Receipt $receipt): self
-    {
-        if ($this->receipt->removeElement($receipt)) {
-            // set the owning side to null (unless already changed)
-            if ($receipt->getProduct() === $this) {
-                $receipt->setProduct(null);
-            }
-        }
-
-        return $this;
-    }
 }
