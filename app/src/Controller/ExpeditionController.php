@@ -32,13 +32,17 @@ class ExpeditionController extends AbstractController
             /** @var Expedition $expedition */
             $expedition = $form->getData();
 
+            $product = $expedition->getProduct();
 
-           // dd($expedition);
+// todo: refactor
+            $packagingQuantity = $product->getPackaging() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
+            if(floor($packagingQuantity) == $packagingQuantity && $packagingQuantity != 0){
+                dd('whole number' . ' '. $packagingQuantity);
+            } else {
+                dd('nenenene' . ' '. $packagingQuantity);
+            }
+            //dd($packagingQuantity);
 
-            //$product = $expedition->getProduct();
-
-            //$product->setPackaging($product->getPackaging() + $expedition->getPackaging());
-            //$product->setLabel($product->getLabel() + $expedition->getLabel());
 
             $expeditions->add($expedition, true);
             $this->addFlash('succecs', 'Expedition have been added.');

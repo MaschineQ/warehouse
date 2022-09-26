@@ -17,12 +17,9 @@ class ExpeditionType extends AbstractType
     {
         $builder
             ->add('expeditionDate', DateType::class, [
-                //'html5' => false,
                 'widget' => 'single_text',
                 'placeholder' => 'Select a value',
             ])
-            ->add('packaging')
-            ->add('label')
             ->add('product', EntityType::class, [
                 'class' => Product::class,
                 'placeholder' => 'Choose a product',

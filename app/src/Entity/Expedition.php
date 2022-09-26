@@ -30,7 +30,8 @@ class Expedition
     #[ORM\JoinColumn(nullable: false)]
     private Product $product;
 
-    private int $quantity;
+    #[ORM\Column]
+    private float $quantity;
 
     public function __construct()
     {
@@ -104,12 +105,12 @@ class Expedition
         return $this;
     }
 
-    public function getQuantity(): int
+    public function getQuantity(): float
     {
         return $this->quantity;
     }
 
-    public function setQuantity(int $quantity): void
+    public function setQuantity(float $quantity): void
     {
         $this->quantity = $quantity;
     }

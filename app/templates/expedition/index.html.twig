@@ -27,8 +27,7 @@
                         <tr>
                             <th class="text-left text-blue-900">Date</th>
                             <th class="text-left text-blue-900">Product</th>
-                            <th class="text-left text-blue-900">Packaging</th>
-                            <th class="text-left text-blue-900">Label</th>
+                            <th class="text-left text-blue-900">Quantity</th>
                         </tr>
                         </thead>
 
@@ -37,8 +36,7 @@
                             <tr>
                                 <td><a href="#">{{ expedition.expeditionDate | date('d.m.Y') }}</a></td>
                                 <td><a href="#">{{ expedition.product.name }}</a></td>
-                                <td><a href="#">{{ expedition.packaging }}</a></td>
-                                <td><a href="#">{{ expedition.label }}</a></td>
+                                <td><a href="#">{{ expedition.quantity }}</a></td>
                             </tr>
                         {% endfor %}
                         </tbody>
