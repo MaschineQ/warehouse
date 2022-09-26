@@ -24,14 +24,16 @@ class ExpeditionController extends AbstractController
     public function add(Request $request, ExpeditionRepository $expeditions): Response
     {
         $form = $this->createForm(ExpeditionType::class, new Expedition());
-        /** @var Expedition $expedition */
-        $expedition = $form->getData();
+
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Expedition $expedition */
             $expedition = $form->getData();
+
+
+           // dd($expedition);
 
             //$product = $expedition->getProduct();
 

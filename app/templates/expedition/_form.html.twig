@@ -25,5 +25,11 @@
     {{ form_errors(form.product) }}
 </div>
 
+<div>
+    {{ form_label(form.quantity, 'qty', {'label_attr': {'class': 'block text-sm text-gray-700 font-medium'}}) }}
+    {{ form_widget(form.quantity, {'attr': {'class': 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}}) }}
+    {{ form_errors(form.quantity) }}
+</div>
+
 <button type="submit" class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:gb-indigo-500 dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2">Save</button>
 {{ form_end(form)}}

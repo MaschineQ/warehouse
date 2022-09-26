@@ -30,6 +30,8 @@ class Expedition
     #[ORM\JoinColumn(nullable: false)]
     private Product $product;
 
+    private int $quantity;
+
     public function __construct()
     {
         $this->expeditionDate = new \DateTime();
@@ -100,5 +102,15 @@ class Expedition
         $this->product = $product;
 
         return $this;
+    }
+
+    public function getQuantity(): int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(int $quantity): void
+    {
+        $this->quantity = $quantity;
     }
 }

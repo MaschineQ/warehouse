@@ -24,12 +24,8 @@ class ReceiptController extends AbstractController
     public function add(Request $request, ReceiptRepository $receipts): Response
     {
         $form = $this->createForm(ReceiptType::class, new Receipt());
-        /** @var Receipt $receipt */
-        $receipt = $form->getData();
 
         $form->handleRequest($request);
-
-        $alert = false;
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Receipt $receipt */
