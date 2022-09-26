@@ -112,9 +112,12 @@
 
             <div class="flex flex-wrap">
                 <div class="w-full">
-                    {{ dump(app.flashes()) }}
-                    {% for message in app.flashes('success') %}
-                        <div class="rounded-md p-2 border-green-300 bg-green-50 border dark:bordere-green-600 dark:bg-green-700 dark:text-white mb-4">{{ message }}</div>
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="flash-{{ label }} rounded-md p-2 border-green-300 bg-green-50 border dark:bordere-green-600 dark:bg-green-700 dark:text-white mb-4">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
                     {% endfor %}
                     <div class="w-full mb-2">
                         <div class="bg-white border rounded shadow">
