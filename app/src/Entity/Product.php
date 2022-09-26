@@ -37,6 +37,9 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Expedition::class)]
     private Collection $expeditions;
 
+    #[ORM\Column(length: 3)]
+    private string $packagingType;
+
     public function __construct()
     {
         $this->receipt = new ArrayCollection();
@@ -122,5 +125,17 @@ class Product
     public function getExpeditions(): Collection
     {
         return $this->expeditions;
+    }
+
+    public function getPackagingType(): string
+    {
+        return $this->packagingType;
+    }
+
+    public function setPackagingType(string $packagingType): self
+    {
+        $this->packagingType = $packagingType;
+
+        return $this;
     }
 }

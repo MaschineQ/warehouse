@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,6 +19,13 @@ class ProductType extends AbstractType
             ->add('quantity')
             ->add('packaging')
             ->add('label')
+            ->add('packagingType', ChoiceType::class, [
+                'choices' => [
+                    'Liter' => 'l',
+                    'Piece' => 'pcs'
+                ],
+                'placeholder' => 'Choose a type',
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'placeholder' => 'Choose a category',
