@@ -32,7 +32,13 @@
 </div>
 
 <div>
-    {{ form_label(form.category, 'Please select category', {'label_attr': {'class': 'block text-sm text-gray-700 font-medium'}}) }}
+    {{ form_label(form.quantityPerPiece, 'Please select quantity per price', {'label_attr': {'class': 'block text-sm text-gray-700 font-medium'}}) }}
+    {{ form_widget(form.quantityPerPiece, {'attr': {'class': 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}}) }}
+    {{ form_errors(form.quantityPerPiece) }}
+</div>
+
+<div>
+    {{ form_label(form.category, 'Please enter quantity per piece', {'label_attr': {'class': 'block text-sm text-gray-700 font-medium'}}) }}
     {{ form_widget(form.category, {'attr': {'class': 'block w-full shadow-sm border-gray-300 rounded-md border p-2 mt-1 mb-2'}}) }}
     {{ form_errors(form.category) }}
 </div>

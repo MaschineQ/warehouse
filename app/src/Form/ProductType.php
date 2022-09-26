@@ -26,6 +26,7 @@ class ProductType extends AbstractType
                 ],
                 'placeholder' => 'Choose a type',
             ])
+            ->add('quantityPerPiece')
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'placeholder' => 'Choose a category',

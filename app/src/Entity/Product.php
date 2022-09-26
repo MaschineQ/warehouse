@@ -40,6 +40,9 @@ class Product
     #[ORM\Column(length: 3)]
     private string $packagingType;
 
+    #[ORM\Column]
+    private float $quantityPerPiece;
+
     public function __construct()
     {
         $this->receipt = new ArrayCollection();
@@ -135,6 +138,18 @@ class Product
     public function setPackagingType(string $packagingType): self
     {
         $this->packagingType = $packagingType;
+
+        return $this;
+    }
+
+    public function getQuantityPerPiece(): float
+    {
+        return $this->quantityPerPiece;
+    }
+
+    public function setQuantityPerPiece(float $quantityPerPiece): self
+    {
+        $this->quantityPerPiece = $quantityPerPiece;
 
         return $this;
     }
