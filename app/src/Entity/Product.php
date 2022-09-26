@@ -34,9 +34,13 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Receipt::class)]
     private Collection $receipt;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Expedition::class)]
+    private Collection $expeditions;
+
     public function __construct()
     {
         $this->receipt = new ArrayCollection();
+        $this->expeditions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,5 +114,35 @@ class Product
     public function getReceipt(): Collection
     {
         return $this->receipt;
+    }
+
+    /**
+     * @return Collection<int, Expedition>
+     */
+    public function getExpeditions(): Collection
+    {
+        return $this->expeditions;
+    }
+
+    public function addExpedition(Expedition $expedition): self
+    {
+        if (!$this->expeditions->contains($expedition)) {
+            $this->expeditions->add($expedition);
+            $expedition->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExpedition(Expedition $expedition): self
+    {
+        if ($this->expeditions->removeElement($expedition)) {
+            // set the owning side to null (unless already changed)
+            if ($expedition->getProduct() === $this) {
+                $expedition->setProduct(null);
+            }
+        }
+
+        return $this;
     }
 }
