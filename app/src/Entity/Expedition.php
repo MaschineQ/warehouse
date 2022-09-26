@@ -22,13 +22,17 @@ class Expedition
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'expedition', targetEntity: ExpeditionItem::class, orphanRemoval: true, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'expedition', targetEntity: ExpeditionItem::class, cascade: [
+        'persist',
+        'remove'
+    ], orphanRemoval: true)]
     private Collection $items;
 
-    private $product;
+    private Product $product;
 
     public function __construct()
     {
+        $this->expeditionDate = new \DateTimeImmutable();
         $this->createdAt = new \DateTimeImmutable();
         $this->items = new ArrayCollection();
     }
@@ -102,21 +106,13 @@ class Expedition
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getProduct()
+    public function getProduct(): Product
     {
         return $this->product;
     }
 
-    /**
-     * @param mixed $product
-     */
-    public function setProduct($product): void
+    public function setProduct(Product $product): void
     {
         $this->product = $product;
     }
-
-
 }

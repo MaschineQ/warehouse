@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Expedition;
 use App\Entity\ExpeditionItem;
 use App\Form\ExpeditionType;
-use App\Repository\ExpeditionItemRepository;
 use App\Repository\ExpeditionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,6 +33,7 @@ class ExpeditionController extends AbstractController
             /** @var Expedition $expedition */
             $expedition = $form->getData();
 
+            // todo
             $expeditionItem = new ExpeditionItem();
             $expeditionItem->setProduct($expedition->getProduct());
             $expedition->addItem($expeditionItem);

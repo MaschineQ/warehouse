@@ -7,7 +7,6 @@ use App\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,7 +24,7 @@ class ExpeditionType extends AbstractType
                 'placeholder' => 'Choose a product',
                 'required' => true,
                 'label' => 'Product',
-                //'mapped' => false,
+                'mapped' => true,
                 'choice_label' => 'name',
             ])
             ->add('quantity', null, [
