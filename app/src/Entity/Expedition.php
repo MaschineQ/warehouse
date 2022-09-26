@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ExpeditionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,40 +14,31 @@ class Expedition
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private int $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private \DateTimeInterface $expeditionDate;
-
-    #[ORM\Column]
-    private int $packaging;
-
-    #[ORM\Column]
-    private int $label;
+    private ?\DateTimeInterface $expeditionDate = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'expeditions')]
-    #[ORM\JoinColumn(nullable: false)]
-    private Product $product;
+    #[ORM\OneToMany(mappedBy: 'expedition', targetEntity: ExpeditionItem::class, orphanRemoval: true, cascade: ['persist', 'remove'])]
+    private Collection $items;
 
-    #[ORM\Column]
-    private float $quantity;
+    private $product;
 
     public function __construct()
     {
-        $this->expeditionDate = new \DateTime();
         $this->createdAt = new \DateTimeImmutable();
+        $this->items = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getExpeditionDate(): \DateTimeInterface
+    public function getExpeditionDate(): ?\DateTimeInterface
     {
         return $this->expeditionDate;
     }
@@ -57,31 +50,7 @@ class Expedition
         return $this;
     }
 
-    public function getPackaging(): int
-    {
-        return $this->packaging;
-    }
-
-    public function setPackaging(int $packaging): self
-    {
-        $this->packaging = $packaging;
-
-        return $this;
-    }
-
-    public function getLabel(): int
-    {
-        return $this->label;
-    }
-
-    public function setLabel(int $label): self
-    {
-        $this->label = $label;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): \DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -93,25 +62,61 @@ class Expedition
         return $this;
     }
 
-    public function getProduct(): Product
+    /**
+     * @return Collection<int, ExpeditionItem>
+     */
+    public function getItems(): Collection
     {
-        return $this->product;
+        return $this->items;
     }
 
-    public function setProduct(Product $product): self
+    /**
+     * @param Collection $items
+     */
+    public function setItems(Collection $items): void
     {
-        $this->product = $product;
+        $this->items = $items;
+    }
+
+
+
+    public function addItem(ExpeditionItem $item): self
+    {
+        if (!$this->items->contains($item)) {
+            $this->items->add($item);
+            $item->setExpedition($this);
+        }
 
         return $this;
     }
 
-    public function getQuantity(): float
+    public function removeItem(ExpeditionItem $item): self
     {
-        return $this->quantity;
+        if ($this->items->removeElement($item)) {
+            // set the owning side to null (unless already changed)
+            if ($item->getExpedition() === $this) {
+                $item->setExpedition(null);
+            }
+        }
+
+        return $this;
     }
 
-    public function setQuantity(float $quantity): void
+    /**
+     * @return mixed
+     */
+    public function getProduct()
     {
-        $this->quantity = $quantity;
+        return $this->product;
     }
+
+    /**
+     * @param mixed $product
+     */
+    public function setProduct($product): void
+    {
+        $this->product = $product;
+    }
+
+
 }

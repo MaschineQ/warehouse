@@ -24,11 +24,13 @@ class ExpeditionType extends AbstractType
                 'class' => Product::class,
                 'placeholder' => 'Choose a product',
                 'required' => true,
-                'label' => 'Receipt',
-                'mapped' => true,
+                'label' => 'Product',
+                //'mapped' => false,
                 'choice_label' => 'name',
             ])
-            ->add('quantity')
+            ->add('quantity', null, [
+                'mapped' => false
+            ])
         ;
     }
 

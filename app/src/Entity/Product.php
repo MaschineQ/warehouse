@@ -34,19 +34,19 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Receipt::class)]
     private Collection $receipt;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Expedition::class)]
-    private Collection $expeditions;
-
     #[ORM\Column(length: 3)]
     private string $packagingType;
 
     #[ORM\Column]
     private float $quantityPerPiece;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: ExpeditionItem::class)]
+    private Collection $items;
+
     public function __construct()
     {
         $this->receipt = new ArrayCollection();
-        $this->expeditions = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -122,14 +122,6 @@ class Product
         return $this->receipt;
     }
 
-    /**
-     * @return Collection<int, Expedition>
-     */
-    public function getExpeditions(): Collection
-    {
-        return $this->expeditions;
-    }
-
     public function getPackagingType(): string
     {
         return $this->packagingType;
@@ -150,6 +142,36 @@ class Product
     public function setQuantityPerPiece(float $quantityPerPiece): self
     {
         $this->quantityPerPiece = $quantityPerPiece;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ExpeditionItem>
+     */
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
+    public function addItem(ExpeditionItem $item): self
+    {
+        if (!$this->items->contains($item)) {
+            $this->items->add($item);
+            $item->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItem(ExpeditionItem $item): self
+    {
+        if ($this->items->removeElement($item)) {
+            // set the owning side to null (unless already changed)
+            if ($item->getProduct() === $this) {
+                $item->setProduct(null);
+            }
+        }
 
         return $this;
     }

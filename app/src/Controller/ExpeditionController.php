@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Expedition;
+use App\Entity\ExpeditionItem;
 use App\Form\ExpeditionType;
+use App\Repository\ExpeditionItemRepository;
 use App\Repository\ExpeditionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,19 +34,14 @@ class ExpeditionController extends AbstractController
             /** @var Expedition $expedition */
             $expedition = $form->getData();
 
-            $product = $expedition->getProduct();
-
-// todo: refactor
-            $packagingQuantity = $product->getPackaging() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
-            if(floor($packagingQuantity) == $packagingQuantity && $packagingQuantity != 0){
-                dd('whole number' . ' '. $packagingQuantity);
-            } else {
-                dd('nenenene' . ' '. $packagingQuantity);
-            }
-            //dd($packagingQuantity);
+            $expeditionItem = new ExpeditionItem();
+            $expeditionItem->setProduct($expedition->getProduct());
+            $expedition->addItem($expeditionItem);
+            //dd($expedition);
 
 
             $expeditions->add($expedition, true);
+
             $this->addFlash('succecs', 'Expedition have been added.');
             return $this->redirectToRoute('app_expedition');
         }
