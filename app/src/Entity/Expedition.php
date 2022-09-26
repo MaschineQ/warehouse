@@ -12,27 +12,37 @@ class Expedition
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $expeditionDate = null;
+    private \DateTimeInterface $expeditionDate;
 
     #[ORM\Column]
-    private ?int $packaging = null;
+    private int $packaging;
+
+    #[ORM\Column]
+    private int $label;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'expeditions')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Product $product = null;
+    private Product $product;
+
+    public function __construct()
+    {
+        $this->expeditionDate = new \DateTime();
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getExpeditionDate(): ?\DateTimeInterface
+    public function getExpeditionDate(): \DateTimeInterface
     {
         return $this->expeditionDate;
     }
@@ -44,7 +54,7 @@ class Expedition
         return $this;
     }
 
-    public function getPackaging(): ?int
+    public function getPackaging(): int
     {
         return $this->packaging;
     }
@@ -56,7 +66,19 @@ class Expedition
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getLabel(): int
+    {
+        return $this->label;
+    }
+
+    public function setLabel(int $label): self
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -68,12 +90,12 @@ class Expedition
         return $this;
     }
 
-    public function getProduct(): ?Product
+    public function getProduct(): Product
     {
         return $this->product;
     }
 
-    public function setProduct(?Product $product): self
+    public function setProduct(Product $product): self
     {
         $this->product = $product;
 

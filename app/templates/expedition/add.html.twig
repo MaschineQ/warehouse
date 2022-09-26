@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Expedition{% endblock %}
+
+{% block bread %}
+    → <a href="{{ path('app_expedition') }}">Expedition</a>
+    → Add Expedition
+{% endblock %}
+
+{% block body %}
+    <div class="w-full">
+        <!--Graph Card-->
+        <div class="bg-white border rounded shadow">
+            <div class="border-b p-3">
+                <h5 class="font-bold uppercase text-gray-600">Expedition Add</h5>
+            </div>
+            <div class="p-5">
+                {{ include('expedition/_form.html.twig') }}
+            </div>
+        </div>
+        <!--/Graph Card-->
+    </div>
+{% endblock %}

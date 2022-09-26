@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Expedition{% endblock %}
+
+{% block bread %}
+    → Expeditions
+{% endblock %}
+
+{% block body %}
+    <div class="bg-white border rounded shadow mb-2">
+        <div class="p-3">
+            <a href="#">
+                <i class="fas fa-plus fa-fw mr-3 text-green-600"></i><span class="pb-1 md:pb-0 text-sm">Add Expedition</span>
+            </a>
+        </div>
+    </div>
+    <div class="w-full">
+        <!--Table Card-->
+        <div class="bg-white border rounded shadow">
+            <div class="border-b p-3">
+                <h5 class="font-bold uppercase text-gray-600">Expeditions</h5>
+            </div>
+            <div class="p-5">
+                {% if expeditions|length > 0 %}
+                    <table class="w-full p-5 text-gray-700">
+                        <thead>
+                        <tr>
+                            <th class="text-left text-blue-900">Date</th>
+                            <th class="text-left text-blue-900">Product</th>
+                            <th class="text-left text-blue-900">Packaging</th>
+                            <th class="text-left text-blue-900">Label</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for expedition in expeditions %}
+                            <tr>
+                                <td><a href="#">{{ expedition.expeditionDate | date('d.m.Y') }}</a></td>
+                                <td><a href="#">{{ expedition.product.name }}</a></td>
+                                <td><a href="#">{{ expedition.packaging }}</a></td>
+                                <td><a href="#">{{ expedition.label }}</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="text-center">
+                        No expeditions.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <!--/table Card-->
+    </div>
+{% endblock %}

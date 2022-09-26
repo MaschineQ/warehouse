@@ -123,26 +123,4 @@ class Product
     {
         return $this->expeditions;
     }
-
-    public function addExpedition(Expedition $expedition): self
-    {
-        if (!$this->expeditions->contains($expedition)) {
-            $this->expeditions->add($expedition);
-            $expedition->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeExpedition(Expedition $expedition): self
-    {
-        if ($this->expeditions->removeElement($expedition)) {
-            // set the owning side to null (unless already changed)
-            if ($expedition->getProduct() === $this) {
-                $expedition->setProduct(null);
-            }
-        }
-
-        return $this;
-    }
 }
