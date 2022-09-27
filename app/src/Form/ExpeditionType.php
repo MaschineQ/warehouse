@@ -28,7 +28,7 @@ class ExpeditionType extends AbstractType
                 'choice_label' => 'name',
             ])
             ->add('quantity', null, [
-                'mapped' => false
+                'mapped' => true
             ])
         ;
     }

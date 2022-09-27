@@ -21,6 +21,15 @@ class ExpeditionItem
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
+    #[ORM\Column]
+    private ?int $packaging = null;
+
+    #[ORM\Column]
+    private ?int $label = null;
+
+    #[ORM\Column]
+    private ?float $quantity = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,6 +55,42 @@ class ExpeditionItem
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getPackaging(): ?int
+    {
+        return $this->packaging;
+    }
+
+    public function setPackaging(int $packaging): self
+    {
+        $this->packaging = $packaging;
+
+        return $this;
+    }
+
+    public function getLabel(): ?int
+    {
+        return $this->label;
+    }
+
+    public function setLabel(int $label): self
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function getQuantity(): ?float
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(float $quantity): self
+    {
+        $this->quantity = $quantity;
 
         return $this;
     }

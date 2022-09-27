@@ -7,6 +7,7 @@ use App\Entity\ExpeditionItem;
 use App\Form\ExpeditionType;
 use App\Repository\ExpeditionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,16 +29,43 @@ class ExpeditionController extends AbstractController
 
 
         $form->handleRequest($request);
+        /** @var Expedition $expedition */
+        $expedition = $form->getData();
+
+        $product = $expedition->getProduct();
+
+        // todo refactor
+        if (null !== $product) {
+            $packagingQuantity = $product->getPackaging() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
+            if (floor($packagingQuantity) == $packagingQuantity && $expedition->getQuantity() != 0) {
+            } else {
+                $form->addError(
+                    new FormError(sprintf(
+                        "Množství neodpovídá balení. Na jedno balelení je potřeba násobku %u %s.",
+                        $product->getQuantityPerPiece(),
+                        $product->getPackagingType()
+                    ))
+                );
+            }
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Expedition $expedition */
-            $expedition = $form->getData();
-
-            // todo
+            // todo refactor
             $expeditionItem = new ExpeditionItem();
-            $expeditionItem->setProduct($expedition->getProduct());
+            $expeditionItem->setProduct($product);
+            $expeditionItem->setPackaging(10);
+            $expeditionItem->setLabel(10);
+            $expeditionItem->setQuantity($expedition->getQuantity());
+
             $expedition->addItem($expeditionItem);
-            //dd($expedition);
+
+            $packagingQuantity = $product->getPackaging() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
+            $labelQuantity = $product->getLabel() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
+
+            $product->setPackaging($product->getPackaging() - $expedition->getQuantity());
+            $product->setLabel($product->getLabel() - $expedition->getQuantity());
+
+
 
 
             $expeditions->add($expedition, true);

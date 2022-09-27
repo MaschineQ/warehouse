@@ -28,7 +28,9 @@ class Expedition
     ], orphanRemoval: true)]
     private Collection $items;
 
-    private Product $product;
+    private ?Product $product = null;
+
+    private float $quantity;
 
     public function __construct()
     {
@@ -106,13 +108,23 @@ class Expedition
         return $this;
     }
 
-    public function getProduct(): Product
+    public function getProduct(): ?Product
     {
         return $this->product;
     }
 
-    public function setProduct(Product $product): void
+    public function setProduct(?Product $product): void
     {
         $this->product = $product;
+    }
+
+    public function getQuantity(): float
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(float $quantity): void
+    {
+        $this->quantity = $quantity;
     }
 }

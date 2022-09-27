@@ -1,5 +1,7 @@
 {{ form_start(form) }}
-<div>{{ form_errors(form) }}</div>
+{% if form_errors(form) %}
+<div class="rounded-md p-2 border-red-300 bg-red-50 border mb-4">{{ form_errors(form) }}</div>
+{% endif %}
 
 <div>
     {{ form_label(form.expeditionDate, 'Please enter the date', {'label_attr': {'class': 'block text-sm text-gray-700 font-medium'}}) }}
