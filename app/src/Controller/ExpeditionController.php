@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Expedition;
 use App\Entity\ExpeditionItem;
 use App\Form\ExpeditionType;
+use App\Manager\ExpeditionManager;
 use App\Repository\ExpeditionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
@@ -23,8 +24,11 @@ class ExpeditionController extends AbstractController
     }
 
     #[Route('/expedition/add', name: 'app_expedition_add', priority: 2)]
-    public function add(Request $request, ExpeditionRepository $expeditions): Response
-    {
+    public function add(
+        Request $request,
+        ExpeditionRepository $expeditions,
+        ExpeditionManager $expeditionManager
+    ): Response {
         $form = $this->createForm(ExpeditionType::class, new Expedition());
 
 
@@ -34,11 +38,14 @@ class ExpeditionController extends AbstractController
 
         $product = $expedition->getProduct();
 
-        // todo refactor
         if (null !== $product) {
-            $packagingQuantity = $product->getPackaging() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
-            if (floor($packagingQuantity) == $packagingQuantity && $expedition->getQuantity() != 0) {
-            } else {
+            if (!$expeditionManager->isRightNumberOfPiecesPerUnit(
+                $expeditionManager->getnumberOfPiecesPerUnit(
+                    $expedition->getQuantity(),
+                    $product->getQuantityPerPiece()
+                ),
+                $expedition->getQuantity()
+            )) {
                 $form->addError(
                     new FormError(sprintf(
                         "Množství neodpovídá balení. Na jedno balelení je potřeba násobku %u %s.",
@@ -50,6 +57,7 @@ class ExpeditionController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $expeditionManager->create();
             // todo refactor
             $expeditionItem = new ExpeditionItem();
             $expeditionItem->setProduct($product);
@@ -59,13 +67,12 @@ class ExpeditionController extends AbstractController
 
             $expedition->addItem($expeditionItem);
 
-            $packagingQuantity = $product->getPackaging() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
+            $numberOfPieces = $product->getPackaging() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
             $labelQuantity = $product->getLabel() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
 
-            $product->setPackaging($product->getPackaging() - $expedition->getQuantity());
-            $product->setLabel($product->getLabel() - $expedition->getQuantity());
 
-
+            $product->setPackaging($numberOfPieces);
+            $product->setLabel($labelQuantity);
 
 
             $expeditions->add($expedition, true);
