@@ -16,7 +16,7 @@ parameters:
     paths:
         - src
         - public
-        # - tests
+        - tests
 
     doctrine:
         objectManagerLoader: tests/object-manager.php

@@ -2,6 +2,8 @@
 
 namespace App\Tests\Functional\Controller;
 
+use App\Entity\Category;
+use App\Entity\User;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
@@ -14,6 +16,7 @@ class CategoryTest extends WebTestCase
     {
         $client = static::createClient();
         $userRepository = static::getContainer()->get(UserRepository::class);
+        /** @var User $testUser */
         $testUser = $userRepository->findOneByEmail(UserFixtures::FIRST_USER);
         $client->loginUser($testUser);
 
@@ -30,6 +33,7 @@ class CategoryTest extends WebTestCase
     {
         $client = static::createClient();
         $userRepository = static::getContainer()->get(UserRepository::class);
+        /** @var User $testUser */
         $testUser = $userRepository->findOneByEmail(UserFixtures::FIRST_USER);
         $client->loginUser($testUser);
 
@@ -44,6 +48,7 @@ class CategoryTest extends WebTestCase
         // self::assertFormValue('#form', 'category[name]', 'Cars');
 
         $categoryRepository = static::getContainer()->get(CategoryRepository::class);
+        /** @var Category $category */
         $category = $categoryRepository->findOneByName('Cars');
         $this->assertEquals('Cars', $category->getName());
     }
