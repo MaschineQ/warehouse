@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+
+ROOT=$(dirname $(realpath $0))/..
+
+cd "${ROOT}"
+
+CONSOLE="php bin/console"
+
+export APP_ENV=test
+
+#$CONSOLE doctrine:database:drop --force
+$CONSOLE doctrine:database:create --if-not-exists
+echo "Migrations..."
+$CONSOLE doctrine:migrations:migrate --allow-no-migration --all-or-nothing --no-interaction
+echo "Fixtures..."
+$CONSOLE doctrine:fixtures:load --group=test-data --no-interaction
+
+#php bin/phpunit "$@"
+php bin/phpunit
