@@ -1,21 +1,25 @@
 includes:
+    - vendor/phpstan/phpstan-doctrine/extension.neon
     - vendor/phpstan/phpstan-symfony/extension.neon
+
 parameters:
-    level: max #  you can currently choose from 9 levels (0 is the loosest and 8 is the strictest).
-    # Often I use the level 5 because the level 6 checks that every method returns type.
-    # As Symfony code generator commands does not fill those return types, it's quite inconvenient to set a level greater than 5.
-    # Feel free to use the one you prefer. You could even set it to 0 to start slowly
+
+    level: max
 
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
 
     symfony:
-        # or with Symfony 4.2+
-        # container_xml_path: var/cache/dev/srcApp_KernelDevDebugContainer.xml
-        # or with Symfony 5+
         container_xml_path: var/cache/dev/App_KernelDevDebugContainer.xml
+        consoleApplicationLoader: tests/console-application.php # Analysis of Symfony Console Commands
+
     paths:
         - src
         - public
-        # if you have tests and want to analyze this folder, uncomment the line below
         # - tests
+
+    doctrine:
+        objectManagerLoader: tests/object-manager.php
+        repositoryClass: Doctrine\ORM\EntityRepository
+
+
