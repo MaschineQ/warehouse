@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +22,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/product/add', name: 'app_product_add', priority: 2)]
+    #[IsGranted('ROLE_ADMIN')]
     public function add(Request $request, ProductRepository $products): Response
     {
         $form = $this->createForm(ProductType::class, new Product());
@@ -42,6 +44,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/product/{product}/edit', name: 'app_product_edit')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, ProductRepository $products, Product $product): Response
     {
         $form = $this->createForm(ProductType::class, $product);
