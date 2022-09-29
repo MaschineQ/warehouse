@@ -57,7 +57,6 @@ class ExpeditionController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $expeditionManager->create();
             // todo refactor
             $expeditionItem = new ExpeditionItem();
             $expeditionItem->setProduct($product);
@@ -67,17 +66,19 @@ class ExpeditionController extends AbstractController
 
             $expedition->addItem($expeditionItem);
 
-            $numberOfPieces = $product->getPackaging() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
-            $labelQuantity = $product->getLabel() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
+            if (null !== $product) {
+                $numberOfPieces = $product->getPackaging() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
+                $labelQuantity = $product->getLabel() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
 
+                $product->setPackaging((int) $numberOfPieces);
+                $product->setLabel((int) $labelQuantity);
 
-            $product->setPackaging($numberOfPieces);
-            $product->setLabel($labelQuantity);
+                $expeditions->add($expedition, true);
 
-
-            $expeditions->add($expedition, true);
-
-            $this->addFlash('succecs', 'Expedition have been added.');
+                $this->addFlash('succecs', 'Expedition have been added.');
+            } else {
+                $this->addFlash('succecs', 'An error has occured.');
+            }
             return $this->redirectToRoute('app_expedition');
         }
 

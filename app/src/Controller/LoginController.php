@@ -22,7 +22,7 @@ class LoginController extends AbstractController
     }
 
     #[Route('/logout', name: 'app_logout')]
-    public function logout()
+    public function logout(): void
     {
     }
 }
