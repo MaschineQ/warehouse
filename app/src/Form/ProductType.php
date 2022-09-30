@@ -22,7 +22,7 @@ class ProductType extends AbstractType
             ->add('packagingType', ChoiceType::class, [
                 'choices' => [
                     'Liter' => 'l',
-                    'Piece' => 'pcs'
+                    'Piece' => 'g'
                 ],
                 'placeholder' => 'Choose a type',
             ])
