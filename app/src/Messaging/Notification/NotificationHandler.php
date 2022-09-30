@@ -19,13 +19,14 @@ class NotificationHandler
 
     public function __invoke(NotificationMessage $message): void
     {
+        $notification = $message->getContent();
 
         $this->mailer->send(
             'test@test.com',
             'Notification',
             'notifications/notification_mail.html.twig',
             [
-                'message' => 'nejaka message',
+                'message' => $notification,
             ]
         );
     }
