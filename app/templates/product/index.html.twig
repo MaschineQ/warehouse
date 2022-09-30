@@ -53,8 +53,8 @@
                         <td>{{ product.quantity }}</td>
                         <td>{{ product.quantityPerPiece }}</td>
                         <td>{{ product.packagingType }}</td>
-                        <td>{{ product.packaging }}</td>
-                        <td>{{ product.label }}</td>
+                        <td class="{% if product.packaging <= 0 %}text-red-600 font-bold{% elseif product.packaging < 50 %}text-orange-600 font-bold{% else %}text-green-600{% endif %}">{{ product.packaging }}</td>
+                        <td class="{% if product.label <= 0 %}text-red-600 font-bold{% elseif product.label < 50 %}text-red-400 font-bold{% else %}text-green-600{% endif %}">{{ product.label }}</td>
                         <td>{{ product.category.name }}</td>
                     </tr>
                     {% endfor %}
