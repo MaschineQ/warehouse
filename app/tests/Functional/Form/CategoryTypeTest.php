@@ -8,7 +8,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class CategoryTypeTest extends TypeTestCase
 {
-    public function testSubmitValidData()
+    public function testSubmitValidData(): void
     {
         $formData = [
             'name' => 'Hardware',
@@ -25,7 +25,7 @@ class CategoryTypeTest extends TypeTestCase
         self::assertEquals('Hardware', $categoryName);
     }
 
-    public function testCustomFormView()
+    public function testCustomFormView(): void
     {
         $formData = new Category();
 
