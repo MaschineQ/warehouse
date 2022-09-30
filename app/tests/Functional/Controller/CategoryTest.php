@@ -4,7 +4,6 @@ namespace App\Tests\Functional\Controller;
 
 use App\Entity\Category;
 use App\Entity\User;
-use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
 use App\Tests\Common\Fixtures\UserFixtures;
@@ -50,6 +49,9 @@ class CategoryTest extends WebTestCase
         $categoryRepository = static::getContainer()->get(CategoryRepository::class);
         /** @var Category $category */
         $category = $categoryRepository->findOneByName('Cars');
-        $this->assertEquals('Cars', $category->getName());
+        $this->assertEquals(
+            'Cars',
+            $category->getName()
+        );
     }
 }
