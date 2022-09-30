@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,10 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('/product', name: 'app_product')]
-    public function index(ProductRepository $products): Response
+    public function index(ProductRepository $products, CategoryRepository $categories): Response
     {
         return $this->render('product/index.html.twig', [
             'products' => $products->findAll(),
+            'categories' => $categories->findBy([], [], 1)
         ]);
     }
 
