@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace App\Tests\Common\Fixtures;
 
-use App\Entity\Category;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixtures extends Fixture implements FixtureGroupInterface
 {
     public const FIRST_USER = 'test1@test.com';
     public const SECOND_USER = 'test2@test.com';
 
-    public function __construct( private UserPasswordHasherInterface $userPasswordHasher,)
+    public function __construct(private UserPasswordHasherInterface $userPasswordHasher)
     {
     }
 
@@ -39,6 +37,5 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
         $user->setPassword($this->userPasswordHasher->hashPassword($user, '123456789'));
         $manager->persist($user);
         $manager->flush();
-
     }
 }

@@ -96,8 +96,8 @@
             "composer functional"
         ],
         "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
-        "ecs": "vendor/bin/ecs check src ecs.php",
-        "ecs-fix": "vendor/bin/ecs check src ecs.php --fix",
+        "ecs": "vendor/bin/ecs check --config ecs.php",
+        "ecs-fix": "vendor/bin/ecs check --config ecs.php --fix",
         "unit": "php bin/phpunit --testsuite=unit",
         "functional": "bin/phpunit-db-wrapper --testsuite=functional",
         "integration": "bin/phpunit-db-wrapper --testsuite=integration"
