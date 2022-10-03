@@ -2,18 +2,22 @@
 
 namespace App\Messaging\Notification;
 
+use App\Entity\Product;
 
 class NotificationMessage
 {
-    private $content;
+    public const PRODUCT_WARNING = 10;
+    public const PRODUCT_LOW = 20;
 
-    public function __construct(string $content)
+    private Product $product;
+
+    public function __construct(Product $product)
     {
-        $this->content = $content;
+        $this->product = $product;
     }
 
-    public function getContent(): string
+    public function getProduct(): Product
     {
-        return $this->content;
+        return $this->product;
     }
 }

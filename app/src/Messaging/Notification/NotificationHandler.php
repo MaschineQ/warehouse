@@ -2,32 +2,44 @@
 
 namespace App\Messaging\Notification;
 
-
+use App\Repository\UserRepository;
 use App\Service\Mailer;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
-
 
 #[AsMessageHandler]
 class NotificationHandler
 {
+    public function __construct(
+        private Mailer         $mailer,
+        private UserRepository $users
+    ) {
+    }
 
-    public function __construct
-    (
-        private Mailer $mailer
-    )
-    {}
-
-    public function __invoke(NotificationMessage $message): void
+    public function __invoke(NotificationMessage $product): void
     {
-        $notification = $message->getContent();
+        $product = $product->getProduct();
 
         $this->mailer->send(
-            'test@test.com',
+            $this->getEmails(), //'test@test.com',
             'Notification',
             'notifications/notification_mail.html.twig',
             [
-                'message' => $notification,
+                'product' => $product,
+                'productWarning' => NotificationMessage::PRODUCT_WARNING
             ]
         );
+    }
+
+    // todo zasilani notifikaci dle nastaveni z db
+    public function getEmails(): string
+    {
+        $users = $this->users->findAll();
+
+        $emails = [];
+        foreach ($users as $user) {
+            $emails[] = $user->getEmail();
+        }
+
+        return implode(',', $emails);
     }
 }
