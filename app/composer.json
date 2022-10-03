@@ -97,6 +97,10 @@
             "composer integration",
             "composer functional"
         ],
+        "create-database": [
+            "php bin/console doctrine:database:create",
+            "php bin/console --no-interaction doctrine:migrations:migrate"
+        ],
         "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
         "ecs": "vendor/bin/ecs check --config ecs.php",
         "ecs-fix": "vendor/bin/ecs check --config ecs.php --fix",
