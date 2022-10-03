@@ -114,7 +114,7 @@
                 <div class="w-full">
                     {% for label, messages in app.flashes %}
                         {% for message in messages %}
-                            <div class="flash-{{ label }} rounded-md p-2 border-green-300 bg-green-50 border dark:bordere-green-600 dark:bg-green-700 dark:text-white mb-4">
+                            <div class="flash-{{ label }} rounded-md p-2 {% if label == 'error' %}border-red-300 bg-red-50 border dark:bordere-red-600 dark:bg-red-700 dark:text-white{% else %}border-green-300 bg-green-50 border dark:bordere-green-600 dark:bg-green-700 dark:text-white{% endif %} mb-4">
                                 {{ message }}
                             </div>
                         {% endfor %}
