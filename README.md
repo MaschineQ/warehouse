@@ -8,7 +8,7 @@ Symfony 6.1.4, PHP 8.1
 6. Visit `http://localhost:8080`
 
 ## First-run
-1. Get inside be container `docker exec it warehouse_php bash`
+1. Get inside be container `docker exec -it warehouse_php bash`
 2. Run `composer install`
 3. Run `composer create-database`
 3. Run `bin/console doctrine:fixtures:load`
