@@ -50,7 +50,7 @@ class ProductFixtures extends Fixture
         $manager->persist($product3);
 
         $product4 = new Product();
-        $product4->setName('Cream 1');
+        $product4->setName('Cream 2');
         $product4->setQuantity(100);
         $product4->setCategory($category->findOneByName('Cosmetics'));
         $product4->setPackaging(300);
