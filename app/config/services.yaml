@@ -30,10 +30,15 @@ services:
     App\EventListener\NotificationSubscriber:
         tags:
             - name: 'doctrine.event_subscriber'
-
                 # subscribers can define their priority in case multiple subscribers or listeners are associated
                 # to the same event (default priority = 0; higher numbers = listener is run earlier)
               priority: 500
 
                 # you can also restrict listeners to a specific Doctrine connection
               connection: 'default'
+
+    App\EventListener\LocaleSubscriber:
+        arguments: ['%kernel.default_locale%', 'cs']
+
+    App\EventListener\UserLocaleSubscriber:
+        tags: [ { name: kernel.event_subscriber } ]

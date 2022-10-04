@@ -30,6 +30,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?UserProfile $userProfile = null;
 
+    #[ORM\Column(length: 5, nullable: true)]
+    private ?string $locale = null;
+
     public function getId(): int
     {
         return $this->id;
@@ -113,6 +116,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->userProfile = $userProfile;
+
+        return $this;
+    }
+
+    public function getLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(?string $locale): self
+    {
+        $this->locale = $locale;
 
         return $this;
     }

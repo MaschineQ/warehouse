@@ -45,12 +45,12 @@
                         </button>
                         <div id="userMenu" class="bg-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
                             <ul class="list-reset">
-                                <li><a href="{{ path('app_profile') }}" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My account</a></li>
-                                <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Notifications</a></li>
+                                <li><a href="{{ path('app_profile') }}" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">{{ 'My account'|trans }}</a></li>
+                                <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">{{ 'Notifications'|trans }}</a></li>
                                 <li>
                                     <hr class="border-t mx-2 border-gray-400">
                                 </li>
-                                <li><a href="{{ path('app_logout') }}" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a></li>
+                                <li><a href="{{ path('app_logout') }}" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">{{ 'Logout'|trans }}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -78,22 +78,22 @@
                     </li>
                     <li class="mr-6 my-2 md:my-0">
                         <a href="{{ path('app_product') }}" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if app.request.attributes.get('_route') == 'app_product' %}text-red-900  border-red-900 hover:border-red-900{% else %}text-gray-500 border-white hover:border-red-800 hover:text-gray-900{% endif %}">
-                            <i class="fas fa-tasks fa-fw mr-3 text-red-900"></i><span class="pb-1 md:pb-0 text-sm">Product</span>
+                            <i class="fas fa-tasks fa-fw mr-3 text-red-900"></i><span class="pb-1 md:pb-0 text-sm">{{ 'Product'|trans }}</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
                         <a href="{{ path('app_category') }}" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if app.request.attributes.get('_route') == 'app_category' %}text-purple-500  border-purple-500 hover:border-purple-500{% else %}text-gray-500 border-white hover:border-purple-400 hover:text-gray-900{% endif %}">
-                            <i class="fa fa-envelope fa-fw mr-3 text-purple-500"></i><span class="pb-1 md:pb-0 text-sm">Category</span>
+                            <i class="fa fa-envelope fa-fw mr-3 text-purple-500"></i><span class="pb-1 md:pb-0 text-sm">{{ 'Category'|trans }}</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
                         <a href="{{ path('app_receipt') }}" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if app.request.attributes.get('_route') == 'app_receipt' %}text-purple-500  border-green-500 hover:border-green-500{% else %}text-gray-500 border-white hover:border-green-400 hover:text-gray-900{% endif %}">
-                            <i class="fas fa-chart-area fa-fw mr-3 text-green-500"></i><span class="pb-1 md:pb-0 text-sm">Receipt</span>
+                            <i class="fas fa-chart-area fa-fw mr-3 text-green-500"></i><span class="pb-1 md:pb-0 text-sm">{{ 'Receipt'|trans }}</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
                         <a href="{{ path('app_expedition') }}" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-900 border-b-2 border-white hover:border-red-500">
-                            <i class="fa fa-wallet fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">Expedition</span>
+                            <i class="fa fa-wallet fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">{{ 'Expedition'|trans }}</span>
                         </a>
                     </li>
                 </ul>
