@@ -12,14 +12,15 @@
         </div>
 
         <div>
-            <label class="block text-sm text-gray-700 dark:text-gray-300 font-medium">Password</label>
+            <label class="block text-sm text-gray-700 dark:text-gray-300 font-medium">{{ 'Password'|trans }}</label>
             <input type="password" name="_password" class="block w-full shadow-sm border-gray-300 dark:border-transparent dark:text-gray-800 rounded-md border p-2 mt-1 mb-2" />
         </div>
 
         <input type="hidden" name="_target_path" value="/" class="block w-full shadow-sm border-gray-300 dark:border-transparent dark:text-gray-800 rounded-md border p-2 mt-1 mb-2" />
 
         <div>
-            <button type="submit" class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:gb-indigo-500 dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2">Login</button>
+            <button type="submit" class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:gb-indigo-500 dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2">
+                {{ 'Login'|trans }}</button>
         </div>
     </form>
 

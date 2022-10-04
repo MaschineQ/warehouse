@@ -1,7 +1,26 @@
 Product: Produkt
-Category: Categorie
+Category: Kategorie
 Receipt: Příjem
 Expedition: Expedice
 'My account': 'Můj účet'
 Notifications: Notifikace
 Logout: Odhlásit
+'Please enter the category name': 'Zadejte jméno kategorie'
+Save: Uložit
+'Create new Category': 'Vytvořit novou kategorii'
+'Add Category': 'Přidat kategorii'
+'Edit Category': 'Upravit kategorii'
+'Category Edit': 'Úprava kategorie'
+Name: Název
+'No categories.': 'Žádné kategorie.'
+'Please enter the date': 'Zadejte prosím datum'
+'Please select product': 'Vyberte prosím produkt'
+choose.a.product: 'Vyberte produkt'
+quantity: Množství
+'Edit Expedition': 'Upravit expedici'
+'Add Expedition': 'Přidat expedici'
+'Expedition Add': 'Přidat Expedici'
+Expeditions: Expedice
+'No expeditions.': 'Žádné expedice.'
+Password: Heslo
+Login: Přihlásit

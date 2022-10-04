@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Category{% endblock %}
+{% block title %}{{ 'Edit Category'|trans }}{% endblock %}
 
 {% block bread %}
-    → <a href="{{ path('app_category') }}">Category</a>
-    → Edit Category
+    → <a href="{{ path('app_category') }}">{{ 'Category'|trans }}</a>
+    → {{ 'Edit Category'|trans }}
 {% endblock %}
 
 {% block body %}
@@ -12,7 +12,7 @@
         <!--Graph Card-->
         <div class="bg-white border rounded shadow">
             <div class="border-b p-3">
-                <h5 class="font-bold uppercase text-gray-600">Category Edit</h5>
+                <h5 class="font-bold uppercase text-gray-600">{{ 'Category Edit'|trans }}</h5>
             </div>
             <div class="p-5">
                 {{ include('category/_form.html.twig') }}

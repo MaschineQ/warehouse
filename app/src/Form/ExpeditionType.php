@@ -9,9 +9,15 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ExpeditionType extends AbstractType
 {
+    public function __construct(
+        private TranslatorInterface $translator
+    ) {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -21,7 +27,7 @@ class ExpeditionType extends AbstractType
             ])
             ->add('product', EntityType::class, [
                 'class' => Product::class,
-                'placeholder' => 'Choose a product',
+                'placeholder' => $this->translator->trans('choose.a.product'),
                 'required' => true,
                 'label' => 'Product',
                 'mapped' => true,
