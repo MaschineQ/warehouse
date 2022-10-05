@@ -87,13 +87,13 @@
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="{{ path('app_receipt') }}" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if app.request.attributes.get('_route') == 'app_receipt' %}text-purple-500  border-green-500 hover:border-green-500{% else %}text-gray-500 border-white hover:border-green-400 hover:text-gray-900{% endif %}">
+                        <a href="{{ path('app_receipt') }}" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if app.request.attributes.get('_route') == 'app_receipt' %}text-green-500  border-green-500 hover:border-green-500{% else %}text-gray-500 border-white hover:border-green-400 hover:text-gray-900{% endif %}">
                             <i class="fas fa-chart-area fa-fw mr-3 text-green-500"></i><span class="pb-1 md:pb-0 text-sm">{{ 'Receipt'|trans }}</span>
                         </a>
                     </li>
                     <li class="mr-6 my-2 md:my-0">
-                        <a href="{{ path('app_expedition') }}" class="block py-1 md:py-3 pl-1 align-middle text-gray-500 no-underline hover:text-gray-900 border-b-2 border-white hover:border-red-500">
-                            <i class="fa fa-wallet fa-fw mr-3"></i><span class="pb-1 md:pb-0 text-sm">{{ 'Expedition'|trans }}</span>
+                        <a href="{{ path('app_expedition') }}" class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if app.request.attributes.get('_route') == 'app_expedition' %}text-red-500  border-red-500 hover:border-red-500{% else %}text-gray-500 border-white hover:border-red-400 hover:text-gray-900{% endif %}">
+                            <i class="fa fa-wallet fa-fw mr-3 text-red-500"></i><span class="pb-1 md:pb-0 text-sm">{{ 'Expedition'|trans }}</span>
                         </a>
                     </li>
                 </ul>
