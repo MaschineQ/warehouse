@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Receipt{% endblock %}
+{% block title %}{{ 'Receipt'|trans }}{% endblock %}
 
 {% block bread %}
-    → Receipts
+    → {{ 'Receipts'|trans }}
 {% endblock %}
 
 {% block body %}
     <div class="bg-white border rounded shadow mb-2">
         <div class="p-3">
             <a href="{{ path('app_receipt_add') }}">
-            <i class="fas fa-plus fa-fw mr-3 text-green-600"></i><span class="pb-1 md:pb-0 text-sm">Add Receipts</span>
+            <i class="fas fa-plus fa-fw mr-3 text-green-600"></i><span class="pb-1 md:pb-0 text-sm">{{ 'Add Receipt'|trans }}</span>
             </a>
         </div>
     </div>
@@ -18,17 +18,17 @@
         <!--Table Card-->
         <div class="bg-white border rounded shadow">
             <div class="border-b p-3">
-                <h5 class="font-bold uppercase text-gray-600">Receipts</h5>
+                <h5 class="font-bold uppercase text-gray-600">{{ 'Receipts'|trans }}</h5>
             </div>
             <div class="p-5">
                 {% if receipts|length > 0 %}
                 <table class="w-full p-5 text-gray-700">
                     <thead>
                     <tr>
-                        <th class="text-left text-blue-900">Date</th>
-                        <th class="text-left text-blue-900">Product</th>
-                        <th class="text-left text-blue-900">Packaging</th>
-                        <th class="text-left text-blue-900">Label</th>
+                        <th class="text-left text-blue-900">{{ 'Date'|trans }}</th>
+                        <th class="text-left text-blue-900">{{ 'Product'|trans }}</th>
+                        <th class="text-left text-blue-900">{{ 'Packaging'|trans }}</th>
+                        <th class="text-left text-blue-900">{{ 'Label'|trans }}</th>
                     </tr>
                     </thead>
 
@@ -45,7 +45,7 @@
                 </table>
                 {% else %}
                     <div class="text-center">
-                        No receipts.
+                        {{ 'No receipts.'|trans }}
                     </div>
                 {% endif %}
             </div>

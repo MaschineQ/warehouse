@@ -32,3 +32,4 @@
 'Please select a valid range.': 'Prosím vyberte platný rozsah.'
 'Please enter a valid week.': 'Prosím zadejte platný týden.'
 Error: __Error
+'The quantity does not match the package.': 'Množství neodpovídá balení. Na jedno balení je potřeba násobku %quantityPerPiece% %packagingType%.'

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product{% endblock %}
+{% block title %}{{ 'Product'|trans }}{% endblock %}
 
 {% block bread %}
-    → Products
+    → {{ 'Products'|trans }}
 {% endblock %}
 
 {% block body %}
@@ -11,15 +11,15 @@
         <div class="p-3">
             {% if categories|length > 0 %}
             <a href="{{ path('app_product_add') }}">
-            <i class="fas fa-plus fa-fw mr-3 text-green-600"></i><span class="pb-1 md:pb-0 text-sm">Add Product</span>
+            <i class="fas fa-plus fa-fw mr-3 text-green-600"></i><span class="pb-1 md:pb-0 text-sm">{{ 'Add Product'|trans }}</span>
             </a>
             {% else %}
             <div class="pb-2 text-red-600">
-                There is no category. Please create a category first.
+                {{ 'There is no category. Please create a category first.'|trans }}
             </div>
             <div>
                 <a href="{{ path('app_category_add') }}">
-                    <i class="fas fa-plus fa-fw mr-3 text-red-600"></i><span class="pb-1 md:pb-0 text-sm">Add Category</span>
+                    <i class="fas fa-plus fa-fw mr-3 text-red-600"></i><span class="pb-1 md:pb-0 text-sm">{{ 'Add Category'|trans }}</span>
                 </a>
             </div>
             {% endif %}
@@ -29,20 +29,20 @@
         <!--Table Card-->
         <div class="bg-white border rounded shadow">
             <div class="border-b p-3">
-                <h5 class="font-bold uppercase text-gray-600">Products</h5>
+                <h5 class="font-bold uppercase text-gray-600">{{ 'Products'|trans }}</h5>
             </div>
             <div class="p-5">
                 {% if products|length > 0 %}
                 <table class="w-full p-5 text-gray-700">
                     <thead>
                     <tr>
-                        <th class="text-left text-blue-900">Name</th>
-                        <th class="text-left text-blue-900">Quantity</th>
-                        <th class="text-left text-blue-900">Quantity per Piece</th>
-                        <th class="text-left text-blue-900">Unit</th>
-                        <th class="text-left text-blue-900">Packaging</th>
-                        <th class="text-left text-blue-900">Label</th>
-                        <th class="text-left text-blue-900">Category</th>
+                        <th class="text-left text-blue-900">{{ 'Name'|trans }}</th>
+                        <th class="text-left text-blue-900">{{ 'Quantity'|trans }}</th>
+                        <th class="text-left text-blue-900">{{ 'Quantity per Piece'|trans }}</th>
+                        <th class="text-left text-blue-900">{{ 'Unit'|trans }}</th>
+                        <th class="text-left text-blue-900">{{ 'Packaging'|trans }}</th>
+                        <th class="text-left text-blue-900">{{ 'Label'|trans }}</th>
+                        <th class="text-left text-blue-900">{{ 'Category'|trans }}</th>
                     </tr>
                     </thead>
 
@@ -62,7 +62,7 @@
                 </table>
                 {% else %}
                     <div class="text-center">
-                        No products.
+                        {{ 'No products.'|trans }}
                     </div>
                 {% endif %}
             </div>

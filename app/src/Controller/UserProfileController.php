@@ -11,9 +11,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UserProfileController extends AbstractController
 {
+    public function __construct(
+        private TranslatorInterface $translator
+    ) {
+    }
+
     #[Route('/profile', name: 'app_profile')]
     public function index(Request $request, UserProfileRepository $profiles, UserRepository $users): Response
     {
@@ -32,7 +38,7 @@ class UserProfileController extends AbstractController
 
             $users->save($user, true);
 
-            $this->addFlash('success', 'Your user profile settings were saved');
+            $this->addFlash('success', $this->translator->trans('Your user profile settings were saved.'));
 
             return $this->redirectToRoute('app_profile');
         }

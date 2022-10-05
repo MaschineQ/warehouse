@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product{% endblock %}
+{% block title %}{{ 'Profile'|trans }}{% endblock %}
 
 {% block bread %}
-    → Products
+    → {{ 'Profile'|trans }}
 {% endblock %}
 
 {% block body %}
     <div class="w-full">
         <div class="bg-white border rounded shadow">
             <div class="border-b p-3">
-                <h5 class="font-bold uppercase text-gray-600">Profile</h5>
+                <h5 class="font-bold uppercase text-gray-600">{{ 'Profile'|trans }}</h5>
             </div>
             <div class="p-5">
                 {{ include('profile/_profile_form.html.twig', ) }}

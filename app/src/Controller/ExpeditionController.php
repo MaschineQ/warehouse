@@ -12,9 +12,15 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ExpeditionController extends AbstractController
 {
+    public function __construct(
+        private TranslatorInterface $translator
+    ) {
+    }
+
     #[Route('/expedition', name: 'app_expedition')]
     public function index(ExpeditionRepository $expeditions): Response
     {
@@ -25,9 +31,9 @@ class ExpeditionController extends AbstractController
 
     #[Route('/expedition/add', name: 'app_expedition_add', priority: 2)]
     public function add(
-        Request $request,
+        Request              $request,
         ExpeditionRepository $expeditions,
-        ExpeditionManager $expeditionManager
+        ExpeditionManager    $expeditionManager
     ): Response {
         $form = $this->createForm(ExpeditionType::class, new Expedition());
 
@@ -47,11 +53,16 @@ class ExpeditionController extends AbstractController
                 $expedition->getQuantity()
             )) {
                 $form->addError(
-                    new FormError(sprintf(
-                        "Množství neodpovídá balení. Na jedno balelení je potřeba násobku %u %s.",
-                        $product->getQuantityPerPiece(),
-                        $product->getPackagingType()
-                    ))
+                    new FormError(
+                        $this->translator->trans(
+                            'The quantity does not match the package.',
+                            [
+                                '%quantityPerPiece%' => $product->getQuantityPerPiece(),
+                                '%packagingType%' => $product->getPackagingType()
+                            ],
+                            'validators'
+                        )
+                    )
                 );
             }
         }
@@ -70,14 +81,14 @@ class ExpeditionController extends AbstractController
                 $numberOfPieces = $product->getPackaging() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
                 $labelQuantity = $product->getLabel() - ($expedition->getQuantity() / $product->getQuantityPerPiece());
 
-                $product->setPackaging((int) $numberOfPieces);
-                $product->setLabel((int) $labelQuantity);
+                $product->setPackaging((int)$numberOfPieces);
+                $product->setLabel((int)$labelQuantity);
 
                 $expeditions->add($expedition, true);
 
-                $this->addFlash('succecs', 'Expedition have been added.');
+                $this->addFlash('succecs', $this->translator->trans('Expedition have been added.'));
             } else {
-                $this->addFlash('succecs', 'An error has occured.');
+                $this->addFlash('succecs', $this->translator->trans('An error has occured.'));
             }
             return $this->redirectToRoute('app_expedition');
         }

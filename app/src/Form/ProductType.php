@@ -9,9 +9,15 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ProductType extends AbstractType
 {
+    public function __construct(
+        private TranslatorInterface $translator
+    ) {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -21,15 +27,15 @@ class ProductType extends AbstractType
             ->add('label')
             ->add('packagingType', ChoiceType::class, [
                 'choices' => [
-                    'Liter' => 'l',
-                    'Piece' => 'g'
+                    $this->translator->trans('Liter') => 'l',
+                    $this->translator->trans('Gram') => 'g'
                 ],
-                'placeholder' => 'Choose a type',
+                'placeholder' => $this->translator->trans('Choose a type'),
             ])
             ->add('quantityPerPiece')
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'placeholder' => 'Choose a category',
+                'placeholder' => $this->translator->trans('Choose a category'),
                 'required' => true,
                 'label' => 'Category',
                 'mapped' => true,

@@ -24,3 +24,42 @@ Expeditions: Expedice
 'No expeditions.': 'Žádné expedice.'
 Password: Heslo
 Login: Přihlásit
+'Please enter the name': 'Vyplňte prosím vaše jméno'
+Profile: Profil
+'Please enter the packaging quantity': 'Zadejte prosím počet obalů'
+'Please select label quantity': 'Zadejte prosím počet samolepek'
+'Add Receipt': 'Přidat příjemku'
+'Receipt Add': 'Přidat příjemku'
+Receipts: Příjemky
+Date: Datum
+Packaging: Obal
+Label: Samolepka
+'No receipts.': 'Žádné příjemky'
+'Category have been added.': 'Kategorie byla přidána.'
+'Your category have been updated.': 'Kategorie byla upravena.'
+'Expedition have been added.': 'Expedice byla přidána.'
+'An error has occured.': 'Vyskytla se chyba.'
+'Product have been added.': 'Produkt byl přidán.'
+'Your product have been updated.': 'Produkt byl upraven.'
+'Receipt have been added.': 'Příjemnka byla vytvořena.'
+'Your user profile settings were saved.': 'Profil byl uložen.'
+'Please enter quantity': 'Zadejte prosím množství'
+'Please enter quantity packaging': 'Zadejte prosím počet obalů'
+'Please enter quantity label': 'Zadejte prosím počet samolepek'
+'Please select packaging type': 'Vyberte prosím typ balení'
+'Please select quantity per price': 'Vyberte prosím množství na jednotku (kus)'
+'Please select category': 'Vyberte prosím kategorii'
+'Choose a category': 'Vyberte kategorii'
+Liter: Litr
+Gram: Gram
+'Choose a type': 'Vyberte typ'
+Products: Produkty
+'Add Product': 'Přidat produkt'
+'There is no category. Please create a category first.': 'Neexistuje žádná kategorie. Vytvořte prosím nejdřív kategorii.'
+Quantity: Množství
+'Quantity per Piece': 'Množství na kus'
+Unit: Jednotka
+'No products.': 'Žádné produkty.'
+'Product Add': 'Přidat produkt'
+'Edit Product': 'Upravit produkt'
+'Product Edit': 'Úprava produktu'

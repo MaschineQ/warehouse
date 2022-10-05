@@ -11,9 +11,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ProductController extends AbstractController
 {
+    public function __construct(
+        private TranslatorInterface $translator
+    ) {
+    }
+
     #[Route('/product', name: 'app_product')]
     public function index(ProductRepository $products, CategoryRepository $categories): Response
     {
@@ -36,7 +42,7 @@ class ProductController extends AbstractController
             $product = $form->getData();
 
             $products->add($product, true);
-            $this->addFlash('succecs', 'Product have been added.');
+            $this->addFlash('succecs', $this->translator->trans('Product have been added.'));
             return $this->redirectToRoute('app_product');
         }
 
@@ -58,7 +64,7 @@ class ProductController extends AbstractController
             $product = $form->getData();
             $products->add($product, true);
 
-            $this->addFlash('success', 'Your product have been updated.');
+            $this->addFlash('success', $this->translator->trans('Your product have been updated.'));
 
             return $this->redirectToRoute('app_product');
         }
