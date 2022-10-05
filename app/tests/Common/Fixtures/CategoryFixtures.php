@@ -27,5 +27,10 @@ class CategoryFixtures extends Fixture implements FixtureGroupInterface
         $category->setName('Cosmetics');
         $manager->persist($category);
         $manager->flush();
+
+        $category = new Category();
+        $category->setName('Drinks');
+        $manager->persist($category);
+        $manager->flush();
     }
 }
