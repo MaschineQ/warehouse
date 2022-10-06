@@ -108,6 +108,7 @@
         "ecs-fix": "vendor/bin/ecs check --config ecs.php --fix",
         "unit": "php bin/phpunit --testsuite=unit",
         "functional": "bin/phpunit-db-wrapper --testsuite=functional",
-        "integration": "bin/phpunit-db-wrapper --testsuite=integration"
+        "integration": "bin/phpunit-db-wrapper --testsuite=integration",
+        "trans": "symfony console translation:extract --format yaml --force --force"
     }
 }
