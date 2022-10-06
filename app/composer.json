@@ -105,7 +105,7 @@
             "php bin/console doctrine:database:create",
             "php bin/console --no-interaction doctrine:migrations:migrate"
         ],
-        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=1G",
         "ecs": "vendor/bin/ecs check --config ecs.php",
         "ecs-fix": "vendor/bin/ecs check --config ecs.php --fix",
         "unit": "php bin/phpunit --testsuite=unit",
