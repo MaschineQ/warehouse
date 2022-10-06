@@ -29,6 +29,7 @@
                         <th class="text-left text-blue-900">{{ 'Product'|trans }}</th>
                         <th class="text-left text-blue-900">{{ 'Packaging'|trans }}</th>
                         <th class="text-left text-blue-900">{{ 'Label'|trans }}</th>
+                        <th class="text-left text-blue-900"></th>
                     </tr>
                     </thead>
 
@@ -39,6 +40,7 @@
                         <td><a href="#">{{ receipt.product.name }}</a></td>
                         <td><a href="#">{{ receipt.packaging }}</a></td>
                         <td><a href="#">{{ receipt.label }}</a></td>
+                        <td><a href="{{ path('app_receipt_delete', { receipt: receipt.id }) }}"><i class="fas fa-sharp fa-solid fa-trash text-red-500"></i></a></td>
                     </tr>
                     {% endfor %}
                     </tbody>

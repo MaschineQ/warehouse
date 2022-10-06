@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ExpeditionRepository;
+use App\Repository\ReceiptRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ExpeditionRepository::class)]
+#[ORM\Entity(repositoryClass: ReceiptRepository::class)]
 class Receipt
 {
     #[ORM\Id]

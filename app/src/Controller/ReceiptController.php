@@ -26,7 +26,7 @@ class ReceiptController extends AbstractController
         ]);
     }
 
-    #[Route('/receipt/add', name: 'app_receipt_add', priority: 2)]
+    #[Route('/receipt/add', name: 'app_receipt_add')]
     public function add(Request $request, ReceiptRepository $receipts): Response
     {
         $form = $this->createForm(ReceiptType::class, new Receipt());
@@ -51,5 +51,20 @@ class ReceiptController extends AbstractController
         return $this->render('receipt/add.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/receipt/{receipt}/delete', name: 'app_receipt_delete')]
+    public function delete(Request $request, Receipt $receipt, ReceiptRepository $receipts): Response
+    {
+        $packagingQuantity = $receipt->getProduct()->getPackaging();
+        $labelQuantity = $receipt->getProduct()->getLabel();
+
+        $receipt->getProduct()->setPackaging($packagingQuantity - $receipt->getPackaging());
+        $receipt->getProduct()->setLabel($labelQuantity - $receipt->getLabel());
+
+        $receipts->remove($receipt, true);
+        $this->addFlash('succecs', $this->translator->trans('Receipt have been deleted.'));
+
+        return $this->redirectToRoute('app_receipt');
     }
 }

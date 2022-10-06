@@ -37,6 +37,11 @@ class NotificationSubscriber implements EventSubscriber
         $this->logActivity('update', $args);
     }
 
+    public function postRemove(LifecycleEventArgs $args): void
+    {
+        $this->logActivity('remove', $args);
+    }
+
     private function logActivity(string $action, LifecycleEventArgs $args): void
     {
         $entity = $args->getObject();
