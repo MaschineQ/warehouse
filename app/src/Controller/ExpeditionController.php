@@ -97,4 +97,20 @@ class ExpeditionController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/expedition/{expedition}/delete')]
+    public function delete(Expedition $expedition, ExpeditionRepository $expeditions): Response
+    {
+        foreach ($expedition->getItems()->getValues() as $item) {
+            if ($item->getProduct()) {
+                $item->getProduct()->setPackaging($item->getProduct()->getPackaging() - $item->getPackaging());
+                $item->getProduct()->setLabel($item->getProduct()->getLabel() - $item->getLabel());
+            }
+        }
+
+        $expeditions->remove($expedition, true);
+        $this->addFlash('succecs', $this->translator->trans('Expedition have been deleted.'));
+
+        return $this->redirectToRoute('app_expedition');
+    }
 }
