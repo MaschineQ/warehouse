@@ -25,9 +25,9 @@
                     <table class="w-full p-5 text-gray-700">
                         <thead>
                         <tr>
-                            <th class="text-left text-blue-900">{{ Date|trans }}</th>
-                            <th class="text-left text-blue-900">{{ Product|trans }}</th>
-                            <th class="text-left text-blue-900">{{ Quantity|trans }}</th>
+                            <th class="text-left text-blue-900">{{ 'Date'|trans }}</th>
+                            <th class="text-left text-blue-900">{{ 'Product'|trans }}</th>
+                            <th class="text-left text-blue-900">{{ 'Quantity'|trans }}</th>
                         </tr>
                         </thead>
 
@@ -35,7 +35,8 @@
                         {% for expedition in expeditions %}
                             <tr>
                                 <td><a href="#">{{ expedition.expeditionDate | date('d.m.Y') }}</a></td>
-                                <td><a href="#">pr.........</a></td>
+                                <td>{% for item in expedition.items %}{{ item.product.name }}{% endfor %}</td>
+                                <td>{% for item in expedition.items %}{{ item.quantity }}{% endfor %}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
