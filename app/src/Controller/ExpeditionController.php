@@ -68,7 +68,7 @@ class ExpeditionController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // todo refactor
+            // todo refactor test
             $expeditionItem = new ExpeditionItem();
             $expeditionItem->setProduct($product);
             $expeditionItem->setPackaging(10);
